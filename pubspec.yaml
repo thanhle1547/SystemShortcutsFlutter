@@ -5,7 +5,6 @@ homepage: https://github.com/aman-malhotra-1999/SystemShortcutsFlutter
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
-  flutter_sdk: ">=2.2.3"
 
 dependencies:
   flutter:
