@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:system_shortcuts/system_shortcuts.dart';
+import 'package:system_shortcuts/system_shortcuts.dart' as system_shortcuts;
 
-void main() => runApp(Main());
+void main() => runApp(const Main());
 
 class Main extends StatelessWidget {
+  const Main({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,13 +13,15 @@ class Main extends StatelessWidget {
         appBar: AppBar(
           title: const Text('System Shortcuts'),
         ),
-        body: MyApp(),
+        body: const MyApp(),
       ),
     );
   }
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -30,93 +34,97 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Body();
+    return const Body();
   }
 }
 
 class Body extends StatelessWidget {
   const Body({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: ListView(
-      children: <Widget>[
-        FlatButton(
-          child: Text("Home"),
-          onPressed: () async {
-            await SystemShortcuts.home();
-          },
-        ),
-        FlatButton(
-          child: Text("Back"),
-          onPressed: () async {
-            await SystemShortcuts.back();
-          },
-        ),
-        FlatButton(
-          child: Text("VolDown"),
-          onPressed: () async {
-            await SystemShortcuts.volDown();
-          },
-        ),
-        FlatButton(
-          child: Text("VolUp"),
-          onPressed: () async {
-            await SystemShortcuts.volUp();
-          },
-        ),
-        FlatButton(
-          child: Text("Landscape"),
-          onPressed: () async {
-            await SystemShortcuts.orientLandscape();
-          },
-        ),
-        FlatButton(
-          child: Text("Portrait"),
-          onPressed: () async {
-            await SystemShortcuts.orientPortrait();
-          },
-        ),
-        FlatButton(
-          child: Text("Wifi"),
-          onPressed: () async {
-            await SystemShortcuts.wifi();
-          },
-        ),
-        FlatButton(
-          child: Text("Check Wifi"),
-          onPressed: () async {
-            bool b = await SystemShortcuts.checkWifi;
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text("Wifi Turned On Check - $b"),
-                duration: Duration(seconds: 2),
-              ),
-            );
-          },
-        ),
-        FlatButton(
-          child: Text("Bluetooth"),
-          onPressed: () async {
-            await SystemShortcuts.bluetooth();
-          },
-        ),
-        FlatButton(
-          child: Text("Check Bluetooth"),
-          onPressed: () async {
-            bool b = await SystemShortcuts.checkBluetooth;
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text("Bluetooth Turned On Check - $b"),
-                duration: Duration(seconds: 2),
-              ),
-            );
-          },
-        ),
-      ],
-    ));
+      child: ListView(
+        // ignore: always_specify_types
+        children: [
+          TextButton(
+            child: const Text('Home'),
+            onPressed: () async {
+              await system_shortcuts.home();
+            },
+          ),
+          TextButton(
+            child: const Text('Back'),
+            onPressed: () async {
+              await system_shortcuts.back();
+            },
+          ),
+          TextButton(
+            child: const Text('VolDown'),
+            onPressed: () async {
+              await system_shortcuts.volDown();
+            },
+          ),
+          TextButton(
+            child: const Text('VolUp'),
+            onPressed: () async {
+              await system_shortcuts.volUp();
+            },
+          ),
+          TextButton(
+            child: const Text('Landscape'),
+            onPressed: () async {
+              await system_shortcuts.orientLandscape();
+            },
+          ),
+          TextButton(
+            child: const Text('Portrait'),
+            onPressed: () async {
+              await system_shortcuts.orientPortrait();
+            },
+          ),
+          TextButton(
+            child: const Text('Wifi'),
+            onPressed: () async {
+              await system_shortcuts.wifi();
+            },
+          ),
+          TextButton(
+            child: const Text('Check Wifi'),
+            onPressed: () async {
+              final bool? result = await system_shortcuts.checkWifi;
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Wifi Turned On Check - $result'),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+            },
+          ),
+          TextButton(
+            child: const Text('Bluetooth'),
+            onPressed: () async {
+              await system_shortcuts.bluetooth();
+            },
+          ),
+          TextButton(
+            child: const Text('Check Bluetooth'),
+            onPressed: () async {
+              final bool? result = await system_shortcuts.checkBluetooth;
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Bluetooth Turned On Check - $result'),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

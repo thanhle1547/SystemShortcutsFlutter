@@ -43,3 +43,7 @@ android {
         disable 'InvalidPackage'
     }
 }
+
+dependencies {
+    compileOnly 'androidx.annotation:annotation:1.0.0'
+}

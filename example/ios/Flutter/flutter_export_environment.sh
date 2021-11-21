@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/kageeker/dev/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/kageeker/Documents/DevProjects/SystemShortcutsFlutter/example"
+export "FLUTTER_ROOT=/home/thanhle/fvm/versions/2.2.0"
+export "FLUTTER_APPLICATION_PATH=/home/thanhle/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/system_shortcuts-1.0.0/example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
