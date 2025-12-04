@@ -8,6 +8,8 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.media.AudioManager
 import android.net.wifi.WifiManager
+import android.os.Build
+import android.provider.Settings
 import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -40,7 +42,7 @@ class SystemShortcutsPlugin :
         context = flutterPluginBinding.applicationContext
     }
 
-    @SuppressLint("SourceLockedOrientationActivity")
+    @SuppressLint("SourceLockedOrientationActivity", "MissingPermission")
     override fun onMethodCall(
         call: MethodCall,
         result: Result
@@ -58,36 +60,63 @@ class SystemShortcutsPlugin :
             "volDown" -> {
                 val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
                 audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND)
+                result.success(true)
             }
             "volUp" -> {
                 val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
                 audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND)
+                result.success(true)
             }
             "orientLandscape" -> {
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                result.success(true)
             }
             "orientPortrait" -> {
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                result.success(true)
             }
             "wifi" -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    result.success(false)
+                    return
+                }
+
                 val wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
-                if (wifiManager.isWifiEnabled) {
+
+                val success = if (wifiManager.isWifiEnabled) {
+                    // setWifiEnabled() will always return false for Android Q
+                    // because Q doesn't allow apps to enable/disable Wi-Fi anymore.
                     wifiManager.setWifiEnabled(false)
                 } else {
                     wifiManager.setWifiEnabled(true)
                 }
+
+                result.success(success)
             }
             "checkWifi" -> {
                 val wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
                 result.success(wifiManager.isWifiEnabled)
             }
+            "openWifiSettingsPanel" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val intent = Intent(Settings.Panel.ACTION_WIFI)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(intent)
+            }
+            "openInternetSettingsPanel" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val intent = Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(intent)
+            }
             "bluetooth" -> {
                 val mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-                if (mBluetoothAdapter.isEnabled) {
+
+                val success = if (mBluetoothAdapter.isEnabled) {
                     mBluetoothAdapter.disable()
                 } else {
                     mBluetoothAdapter.enable()
                 }
+
+                result.success(success)
             }
             "checkBluetooth" -> {
                 val mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()

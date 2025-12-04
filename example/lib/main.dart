@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:system_shortcuts/system_shortcuts.dart' as system_shortcuts;
 
@@ -85,6 +87,20 @@ class Body extends StatelessWidget {
               );
             },
           ),
+          if (Platform.isAndroid) ...[
+            TextButton(
+              child: const Text('Open Wifi Settings Panel'),
+              onPressed: () async {
+                await system_shortcuts.openAndroidWifiSettingsPanel();
+              },
+            ),
+            TextButton(
+              child: const Text('Open Internet Settings Panel'),
+              onPressed: () async {
+                await system_shortcuts.openAndroidInternetSettingsPanel();
+              },
+            ),
+          ],
           TextButton(
             child: const Text('Bluetooth'),
             onPressed: () async {

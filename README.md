@@ -39,7 +39,15 @@ Thanks to **[Rody Davis](https://github.com/rodydavis)** for IOS implementation.
 
 ### Toggle WIFI using this function
 
+Android 10 (Q) doesn't allow apps to enable/disable Wi-Fi, so this method always returns false.
+
 > await SystemShortcuts.wifi();// toggle wifi in android 
+
+### Display a settings dialog containing controls of internet settings,
+
+> await SystemShortcuts.openAndroidWifiSettingsPanel();
+
+> await SystemShortcuts.openAndroidInternetSettingsPanel();
 
 ### Toggle BLUETOOTH using this function
 

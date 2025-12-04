@@ -35,14 +35,6 @@ public class SystemShortcutsPlugin: NSObject, FlutterPlugin {
             MPVolumeView.setVolume(volBefore - 0.1)
             let volAfter = AVAudioSession.sharedInstance().outputVolume
             result(volAfter)
-        case "orientLandscapeLeft":
-            let val = UIInterfaceOrientation.landscapeLeft.rawValue
-            UIDevice.current.setValue(val, forKey: "orientation")
-            result(nil)
-        case "orientLandscapeRight":
-            let val = UIInterfaceOrientation.landscapeRight.rawValue
-            UIDevice.current.setValue(val, forKey: "orientation")
-            result(nil)
         case "orientLandscape":
             let val = UIInterfaceOrientation.landscapeLeft.rawValue
             UIDevice.current.setValue(val, forKey: "orientation")
@@ -53,10 +45,6 @@ public class SystemShortcutsPlugin: NSObject, FlutterPlugin {
             UIDevice.current.setValue(val, forKey: "orientation")
             result(nil)
             break;
-        case "orientPortraitUpsideDown":
-            let val = UIInterfaceOrientation.portraitUpsideDown.rawValue
-            UIDevice.current.setValue(val, forKey: "orientation")
-            result(nil)
         case "wifi":
             // It's not possible to Change Wifi Global Setting on iOS
             result(nil)

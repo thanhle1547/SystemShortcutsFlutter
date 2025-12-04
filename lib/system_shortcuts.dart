@@ -63,12 +63,17 @@ Future<void> orientPortrait() async => _channel.invokeMethod('orientPortrait');
 /// Toggle Wifi.
 ///
 /// If it is already turned on wifi() will turn it off
-/// else it'll turn it on
-Future<void> wifi() async {
-  if (Platform.isIOS) {
-  } else {
-    await _channel.invokeMethod<void>('wifi');
+/// else it'll turn it on.
+/// will always return false for Android Q
+///
+/// It will always return false for Android 10 (Q)
+/// because Q doesn't allow apps to enable/disable Wi-Fi.
+Future<bool?> wifi() async {
+  if (Platform.isAndroid) {
+    return _channel.invokeMethod<bool>('wifi');
   }
+
+  return null;
 }
 
 /// Return true if the wifi is alreay turned on.
@@ -77,15 +82,38 @@ Future<void> wifi() async {
 Future<bool?> get checkWifi async =>
     _channel.invokeMethod<bool>('checkWifi');
 
+/// Display a settings dialog containing controls for Wi-Fi.
+///
+/// This action allows an application to present a user with a panel
+/// for managing Wi-Fi settings without navigating to the full Android Settings app.
+///
+/// This method is only supported on Android 10 (Q) and later versions.
+Future<void> openAndroidWifiSettingsPanel() async {
+  if (Platform.isAndroid) {
+    await _channel.invokeMethod<void>('openWifiSettingsPanel');
+  }
+}
+
+/// Display a settings dialog containing a broader range of internet settings,
+/// including Wi-Fi, mobile data, and airplane mode.
+///
+/// This method is only supported on Android 10 (Q) and later versions.
+Future<void> openAndroidInternetSettingsPanel() async {
+  if (Platform.isAndroid) {
+    await _channel.invokeMethod<void>('openInternetSettingsPanel');
+  }
+}
+
 /// Toggle bluetooth.
 ///
 /// If it is already turned on bluetooth() will turn it off
 /// else it'll turn it on
-Future<void> bluetooth() async {
-  if (Platform.isIOS) {
-  } else {
-    await _channel.invokeMethod<void>('bluetooth');
+Future<bool?> bluetooth() async {
+  if (Platform.isAndroid) {
+    return _channel.invokeMethod<bool>('bluetooth');
   }
+
+  return null;
 }
 
 /// Return true if the bluetooth is alreay turned on.
