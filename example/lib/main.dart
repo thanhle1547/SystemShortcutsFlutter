@@ -1,47 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:system_shortcuts/system_shortcuts.dart' as system_shortcuts;
 
-void main() => runApp(const Main());
+void main() {
+  runApp(const MyApp());
+}
 
-class Main extends StatelessWidget {
-  const Main({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('System Shortcuts'),
+          title: const Text('Plugin example app'),
         ),
-        body: const MyApp(),
+        body: Body(),
       ),
     );
   }
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const Body();
-  }
-}
-
 class Body extends StatelessWidget {
-  const Body({
-    Key? key,
-  }) : super(key: key);
+  const Body({super.key});
 
   @override
   Widget build(BuildContext context) {

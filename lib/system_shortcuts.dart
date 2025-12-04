@@ -75,7 +75,7 @@ Future<void> wifi() async {
 ///
 /// Return false if the wifi is turned off.
 Future<bool?> get checkWifi async =>
-    _channel.invokeMethod<void>('checkWifi') as bool?;
+    _channel.invokeMethod<bool>('checkWifi');
 
 /// Toggle bluetooth.
 ///
@@ -92,4 +92,4 @@ Future<void> bluetooth() async {
 ///
 /// Return false if the bluetooth is turned off.
 Future<bool?> get checkBluetooth async =>
-    _channel.invokeMethod<void>('checkBluetooth') as bool?;
+    _channel.invokeMethod<bool>('checkBluetooth');

@@ -1,63 +1,16 @@
-```
-FlatButton(
-    child: Text("Home"),
-    onPressed: () async {
-    await SystemShortcuts.home();
-    },
-),
-FlatButton(
-    child: Text("Back"),
-    onPressed: () async {
-    await SystemShortcuts.back();
-    },
-),
-FlatButton(
-    child: Text("VolDown"),
-    onPressed: () async {
-    await SystemShortcuts.volDown();
-    },
-),
-FlatButton(
-    child: Text("VolUp"),
-    onPressed: () async {
-    await SystemShortcuts.volUp();
-    },
-),
-FlatButton(
-    child: Text("Landscape"),
-    onPressed: () async {
-    await SystemShortcuts.orientLandscape();
-    },
-),
-FlatButton(
-    child: Text("Portrait"),
-    onPressed: () async {
-    await SystemShortcuts.orientPortrait();
-    },
-),
-FlatButton(
-    child: Text("Wifi"),
-    onPressed: () async {
-    await SystemShortcuts.wifi();
-    },
-),
-FlatButton(
-    child: Text("Check Wifi"),
-    onPressed: () async {
-    print(await SystemShortcuts.checkWifi);
-    },
-),
-FlatButton(
-    child: Text("Bluetooth"),
-    onPressed: () async {
-    await SystemShortcuts.bluetooth();
-    },
-),
-FlatButton(
-    child: Text("Check Bluetooth"),
-    onPressed: () async {
-    print(await SystemShortcuts.checkBluetooth);
-    },
-),
+# system_shortcuts_example
 
-```
+Demonstrates how to use the system_shortcuts plugin.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

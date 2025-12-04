@@ -1,49 +1,48 @@
-group 'com.example.systemshortcuts'
-version '1.0-SNAPSHOT'
+group = "com.example.system_shortcuts"
+version = "1.0-SNAPSHOT"
 
 buildscript {
+    ext.kotlin_version = "2.1.0"
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath("com.android.tools.build:gradle:8.9.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
-/*
-allprojects {
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.encoding = 'UTF-8'
-            options.compilerArgs << "-Xlint:deprecation"
-        }
-    }
-}
-*/
-
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
 android {
-    compileSdkVersion 29
+    namespace = "com.example.system_shortcuts"
+
+    compileSdk = flutter.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+    }
 
     defaultConfig {
-        minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = flutter.minSdkVersion
     }
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-}
-
-dependencies {
-    compileOnly 'androidx.annotation:annotation:1.0.0'
 }

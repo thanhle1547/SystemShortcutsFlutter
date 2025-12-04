@@ -4,7 +4,8 @@ version: 1.0.2
 homepage: https://github.com/aman-malhotra-1999/SystemShortcutsFlutter
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ^3.9.2
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:
@@ -14,7 +15,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.systemshortcuts
+        package: com.example.system_shortcuts
         pluginClass: SystemShortcutsPlugin
       ios:
         pluginClass: SystemShortcutsPlugin
