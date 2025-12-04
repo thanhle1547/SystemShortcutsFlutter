@@ -1,3 +1,20 @@
+## 1.1.0
+**Breaking change**
+
+* Update minimum supported SDK version to Flutter 3.3.0/Dart 3.9.2
+* Use `flutter.compileSdkVersion` and `flutter.minSdkVersion`
+* Recreate plugin and example project with Flutter 3.35.7. What changed?
+  - Bump AGP from 3.5.3 to 8.9.1
+  - Update Java compatibility version to 11
+  - Apply Gradle plugins with the declarative plugins block
+  - Support 16KB page size in Android 15
+  - Support namespace property to support Android Gradle Plugin (AGP) 8
+  - Migrate to mavenCentral
+  - Add Swift Package Manager support
+
+* Add `openAndroidWifiSettingsPanel()` and `openAndroidInternetSettingsPanel()` apis.
+* `wifi()` and `bluetooth()` now return toogle result.
+
 ## 1.0.2
 Using Flutter 2.2.0 for example project
 
