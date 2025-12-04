@@ -1,3 +1,9 @@
+## 1.0.2
+Using Flutter 2.2.0 for example project
+
+## 1.0.1
+Migrate to NNBD
+
 ## 1.0.0
 Updated pubspec to show supported on both android and ios
 
