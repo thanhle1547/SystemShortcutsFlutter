@@ -22,7 +22,7 @@ public class SystemShortcutsPlugin: NSObject, FlutterPlugin {
             result(vol)
         case "setVol":
             let arguments = call.arguments as! [String : Any];
-            let volBefore = _arguments["value"] as? Float
+            let volBefore = arguments["value"] as? Float
             MPVolumeView.setVolume(volBefore ?? 0.5)
             let volAfter = AVAudioSession.sharedInstance().outputVolume
             result(volAfter)
