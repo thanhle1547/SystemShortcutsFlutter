@@ -1,3 +1,7 @@
+## 1.1.1
+- Fix: Swift Compiler Error
+- Bump min iOS to 15
+
 ## 1.1.0
 **Breaking change**
 
