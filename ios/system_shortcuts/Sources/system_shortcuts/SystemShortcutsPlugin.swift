@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import MediaPlayer // use MPVolumeView
 
 public class SystemShortcutsPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
